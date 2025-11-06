@@ -10,7 +10,6 @@ class User:
         """
         self.name = name
         self.email = email
-        self.balance = 0.0  # Overall balance
     
     def __str__(self):
         return f"{self.name} ({self.email})"
@@ -27,16 +26,12 @@ class User:
         return hash(self.email)
     
     def to_dict(self):
-        """Convert user to dictionary for JSON serialization."""
         return {
             'name': self.name,
             'email': self.email,
-            'balance': self.balance
         }
     
     @classmethod
     def from_dict(cls, data):
-        """Create user from dictionary."""
         user = cls(data['name'], data['email'])
-        user.balance = data.get('balance', 0.0)
         return user
